@@ -1,9 +1,5 @@
 FROM centos:centos7
-
-LABEL maintainer="Michael <michael@foxmail.com>"
-
 ENV NGINX_VERSION 1.15.2
-
 RUN CONFIG="\
 
         --prefix=/usr/share/nginx \
@@ -163,7 +159,7 @@ RUN CONFIG="\
         && ln -sf /dev/stdout /var/log/nginx/access.log \
 
         && ln -sf /dev/stderr /var/log/nginx/error.log
-
+RUN yum install curl net-tools nmap tcpdump vim ipvsadm bind-utils mtr traceroute -y
 STOPSIGNAL SIGTERM
 EXPOSE 80
 CMD ["nginx", "-g", "daemon off;"]
